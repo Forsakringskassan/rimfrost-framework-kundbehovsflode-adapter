@@ -1,4 +1,4 @@
-package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode;
+package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -6,9 +6,9 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import se.fk.github.jaxrsclientfactory.JaxrsClientFactory;
 import se.fk.github.jaxrsclientfactory.JaxrsClientOptionsBuilders;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.KundbehovsflodeRequest;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.KundbehovsflodeResponse;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.UpdateKundbehovsflodeRequest;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.KundbehovsflodeRequest;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.KundbehovsflodeResponse;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.UpdateKundbehovsflodeRequest;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.KundbehovsflodeControllerApi;
 import static io.quarkus.arc.impl.UncaughtExceptions.LOGGER;
 

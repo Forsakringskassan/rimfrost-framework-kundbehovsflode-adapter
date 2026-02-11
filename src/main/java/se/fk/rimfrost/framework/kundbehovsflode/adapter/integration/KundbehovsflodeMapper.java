@@ -1,10 +1,10 @@
-package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode;
+package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.ImmutableErsattning;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.ImmutableKundbehovsflodeResponse;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.KundbehovsflodeResponse;
-import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto.UpdateKundbehovsflodeRequest;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.ImmutableErsattning;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.ImmutableKundbehovsflodeResponse;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.KundbehovsflodeResponse;
+import se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto.UpdateKundbehovsflodeRequest;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.*;
 import java.util.ArrayList;
 import static se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus.*;

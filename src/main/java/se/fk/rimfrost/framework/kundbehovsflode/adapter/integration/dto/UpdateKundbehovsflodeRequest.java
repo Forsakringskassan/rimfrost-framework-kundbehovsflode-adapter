@@ -1,4 +1,4 @@
-package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.kundbehovsflode.dto;
+package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto;
 
 import org.immutables.value.Value;
 

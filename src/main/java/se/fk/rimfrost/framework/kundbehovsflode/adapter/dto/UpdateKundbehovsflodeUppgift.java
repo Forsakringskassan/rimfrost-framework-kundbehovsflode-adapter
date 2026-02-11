@@ -1,10 +1,9 @@
-package se.fk.rimfrost.framework.kundbehovsflode.adapter.integration.dto;
+package se.fk.rimfrost.framework.kundbehovsflode.adapter.dto;
 
 import jakarta.annotation.Nullable;
 import org.immutables.value.Value;
 import se.fk.rimfrost.framework.regel.logic.dto.UppgiftStatus;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.FSSAinformation;
-
 import java.time.OffsetDateTime;
 import java.util.UUID;
 

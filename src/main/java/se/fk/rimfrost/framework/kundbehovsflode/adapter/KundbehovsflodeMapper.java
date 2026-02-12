@@ -2,12 +2,13 @@ package se.fk.rimfrost.framework.kundbehovsflode.adapter;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.*;
-import se.fk.rimfrost.framework.regel.logic.config.RegelConfig;
-import se.fk.rimfrost.framework.regel.logic.dto.Beslutsutfall;
-import se.fk.rimfrost.framework.regel.logic.entity.ErsattningData;
-import se.fk.rimfrost.framework.regel.logic.entity.RegelData;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.*;
-import java.time.ZoneOffset;
+import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Ersattning.BeslutsutfallEnum;
+import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.FSSAinformation;
+import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Roll;
+import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus;
+import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Verksamhetslogik;
+
 import java.util.ArrayList;
 import static se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus.*;
 
@@ -60,10 +61,10 @@ public class KundbehovsflodeMapper
       uppgiftspecifikation.setApplikationsId(request.uppgift().specifikation().applikationsId());
       uppgiftspecifikation.setApplikationsVersion(request.uppgift().specifikation().applikationsversion());
       uppgiftspecifikation.setNamn(request.uppgift().specifikation().namn());
-      uppgiftspecifikation.setRoll(request.uppgift().specifikation().roll());
+      uppgiftspecifikation.setRoll(mapRoll(request.uppgift().specifikation().roll()));
       uppgiftspecifikation.setUppgiftbeskrivning(request.uppgift().specifikation().uppgiftsbeskrivning());
       uppgiftspecifikation.setUppgiftsGui(request.uppgift().specifikation().url());
-      uppgiftspecifikation.setVerksamhetslogik(request.uppgift().specifikation().verksamhetslogik());
+      uppgiftspecifikation.setVerksamhetslogik(mapVerksamhetslogik(request.uppgift().specifikation().verksamhetslogik()));
       uppgiftspecifikation.setVersion(request.uppgift().specifikation().version());
       uppgiftspecifikation.setRegel(regel);
 
@@ -79,7 +80,7 @@ public class KundbehovsflodeMapper
 
       var uppgift = new Uppgift();
       uppgift.setId(request.uppgift().id());
-      uppgift.setFsSAinformation(request.uppgift().fsSAinformation());
+      uppgift.setFsSAinformation(mapFssaInformation(request.uppgift().fsSAinformation()));
       uppgift.setSkapadTs(request.uppgift().skapadTs());
       uppgift.setUtfordTs(request.uppgift().utfordTs());
       uppgift.setUppgiftStatus(mapUppgiftStatus(request.uppgift().uppgiftStatus()));
@@ -94,7 +95,7 @@ public class KundbehovsflodeMapper
       {
          var ersattningItem = ersattningar.stream().filter(e -> e.getId().equals(ersattning.id())).findFirst().get();
          ersattningItem.setAvslagsanledning(ersattning.avslagsanledning());
-         ersattningItem.setBeslutsutfall(ersattning.beslutsutfall());
+         ersattningItem.setBeslutsutfall(mapBeslutsutfall(ersattning.beslutsutfall()));
       }
 
       var kundbehovflode = apiResponse.getKundbehovsflode();
@@ -108,99 +109,45 @@ public class KundbehovsflodeMapper
       return putRequest;
    }
 
-   public UpdateKundbehovsflodeRequest toUpdateKundbehovsflodeRequest(RegelData regelData,
-         RegelConfig regelConfig)
-   {
-
-      var lagrum = ImmutableUpdateKundbehovsflodeLagrum.builder()
-            .id(regelConfig.getLagrum().getId())
-            .version(regelConfig.getLagrum().getVersion())
-            .forfattning(regelConfig.getLagrum().getForfattning())
-            .giltigFrom(regelConfig.getLagrum().getGiltigFom().toInstant().atOffset(ZoneOffset.UTC))
-            .kapitel(regelConfig.getLagrum().getKapitel())
-            .paragraf(regelConfig.getLagrum().getParagraf())
-            .stycke(regelConfig.getLagrum().getStycke())
-            .punkt(regelConfig.getLagrum().getPunkt())
-            .build();
-
-      var regel = ImmutableUpdateKundbehovsflodeRegel.builder()
-            .id(regelConfig.getRegel().getId())
-            .beskrivning(regelConfig.getRegel().getBeskrivning())
-            .namn(regelConfig.getRegel().getNamn())
-            .version(regelConfig.getRegel().getVersion())
-            .lagrum(lagrum)
-            .build();
-
-      var specifikation = ImmutableUpdateKundbehovsflodeSpecifikation.builder()
-            .id(regelConfig.getSpecifikation().getId())
-            .version(regelConfig.getSpecifikation().getVersion())
-            .namn(regelConfig.getSpecifikation().getNamn())
-            .uppgiftsbeskrivning(regelConfig.getSpecifikation().getUppgiftbeskrivning())
-            .verksamhetslogik(Verksamhetslogik.fromString(regelConfig.getSpecifikation().getVerksamhetslogik()))
-            .roll(Roll.fromString(regelConfig.getSpecifikation().getRoll()))
-            .applikationsId(regelConfig.getSpecifikation().getApplikationsId())
-            .applikationsversion(regelConfig.getSpecifikation().getApplikationsversion())
-            .url(regelConfig.getUppgift().getPath())
-            .regel(regel)
-            .build();
-
-      var uppgift = ImmutableUpdateKundbehovsflodeUppgift.builder()
-            .id(regelData.uppgiftId())
-            .version(regelConfig.getUppgift().getVersion())
-            .skapadTs(regelData.skapadTs())
-            .utfordTs(regelData.utfordTs())
-            .planeradTs(regelData.planeradTs())
-            .utforarId(regelData.utforarId())
-            .uppgiftStatus(regelData.uppgiftStatus())
-            .aktivitet(regelConfig.getUppgift().getAktivitet())
-            .fsSAinformation(regelData.fssaInformation())
-            .specifikation(specifikation)
-            .build();
-
-      var requestBuilder = ImmutableUpdateKundbehovsflodeRequest.builder()
-            .kundbehovsflodeId(regelData.kundbehovsflodeId())
-            .uppgift(uppgift)
-            .underlag(new ArrayList<>());
-
-      for (ErsattningData rtfErsattning : regelData.ersattningar())
-      {
-         var ersattning = ImmutableUpdateKundbehovsflodeErsattning.builder()
-               .beslutsutfall(mapBeslutsutfall(rtfErsattning.beslutsutfall()))
-               .id(rtfErsattning.id())
-               .avslagsanledning(rtfErsattning.avslagsanledning())
-               .build();
-         requestBuilder.addErsattningar(ersattning);
-      }
-
-      for (var rtfUnderlag : regelData.underlag())
-      {
-         var underlag = ImmutableUpdateKundbehovsflodeUnderlag.builder()
-               .typ(rtfUnderlag.typ())
-               .version(rtfUnderlag.version())
-               .data(rtfUnderlag.data())
-               .build();
-         requestBuilder.addUnderlag(underlag);
-      }
-
-      return requestBuilder.build();
-   }
-
-   private Ersattning.BeslutsutfallEnum mapBeslutsutfall(Beslutsutfall beslutsutfall)
-    {
-        if (beslutsutfall == null)
-        {
-            return Ersattning.BeslutsutfallEnum.FU;
-        }
-
-        return switch (beslutsutfall) {
+   private BeslutsutfallEnum mapBeslutsutfall(Beslutsutfall beslutsutfall) {
+          return switch (beslutsutfall) {
             case JA -> Ersattning.BeslutsutfallEnum.JA;
             case NEJ -> Ersattning.BeslutsutfallEnum.NEJ;
-            default -> Ersattning.BeslutsutfallEnum.FU;
+            case FU -> Ersattning.BeslutsutfallEnum.FU;
+            default -> throw new InternalError("Could not map beslutsutfall: " + beslutsutfall);
         };
-    }
+}
 
-   private UppgiftStatus mapUppgiftStatus(
-         se.fk.rimfrost.framework.regel.logic.dto.UppgiftStatus uppgiftStatus)
+   private FSSAinformation mapFssaInformation(
+            se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.FSSAinformation fsSAinformation) {
+          return switch (fsSAinformation) {
+            case HANDLAGGNING_PAGAR -> FSSAinformation.HANDLAGGNING_PAGAR;
+            case VANTAR_PA_INFO_FRAN_ANNAN_PART -> FSSAinformation.VANTAR_PA_INFO_FRAN_ANNAN_PART;
+            case VANTAR_PA_INFO_FRAN_KUND -> FSSAinformation.VANTAR_PA_INFO_FRAN_KUND;
+            default -> throw new InternalError("Could not map fssaInformation: " + fsSAinformation);
+        };
+}
+
+   private Verksamhetslogik mapVerksamhetslogik(
+            se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.Verksamhetslogik verksamhetslogik) {
+            return switch(verksamhetslogik) {
+                  case A -> Verksamhetslogik.A;
+                  case B -> Verksamhetslogik.B;
+                  case C -> Verksamhetslogik.C;
+                  default -> throw new InternalError("Could not map verksamhetslogik: " + verksamhetslogik);
+            };
+      }
+
+   private Roll mapRoll(se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.Roll roll) {
+            return switch(roll) {
+                  case AGARE -> Roll.AGARE;
+                  case ANSVARIG_HANDLAGGARE -> Roll.ANSVARIG_HANDLAGGARE;
+                  case DJUR -> Roll.DJUR;
+                  default -> throw new InternalError("Could not map roll: " + roll);
+            };
+}
+
+   private UppgiftStatus mapUppgiftStatus(se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.UppgiftStatus uppgiftStatus)
    {
        return switch (uppgiftStatus) {
            case TILLDELAD -> TILLDELAD;

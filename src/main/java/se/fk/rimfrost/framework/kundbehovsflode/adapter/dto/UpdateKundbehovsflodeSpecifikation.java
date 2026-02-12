@@ -1,8 +1,6 @@
 package se.fk.rimfrost.framework.kundbehovsflode.adapter.dto;
 
 import org.immutables.value.Value;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Roll;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Verksamhetslogik;
 import java.util.UUID;
 
 @Value.Immutable

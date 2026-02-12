@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-kundbehovsflode-adapter.
 
+## 0.0.3 (2026-02-12)
+
+### Bug Fixes
+
+-  remove dependency to framework-regel ([0f09a](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/0f09a76fe1d7f9b) Nils Elveros)  
+
 ## 0.0.2 (2026-02-11)
 
 ### Bug Fixes

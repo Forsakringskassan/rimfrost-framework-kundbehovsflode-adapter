@@ -10,6 +10,7 @@ import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Verksamhetslogik;
 
 import java.util.ArrayList;
+
 import static se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus.*;
 
 @ApplicationScoped
@@ -32,6 +33,7 @@ public class KundbehovsflodeMapper
                .franOchMed(ersattning.getProduceratResultat().getFrom().toLocalDate())
                .tillOchMed(ersattning.getProduceratResultat().getTom().toLocalDate())
                .omfattningsProcent(ersattning.getOmfattning())
+               .beslutsutfall(ersattning.getBeslutsutfall().toString())
                .build());
       }
       return responseBuilder.build();
@@ -110,50 +112,49 @@ public class KundbehovsflodeMapper
    }
 
    private BeslutsutfallEnum mapBeslutsutfall(Beslutsutfall beslutsutfall) {
-          return switch (beslutsutfall) {
+        return switch (beslutsutfall) {
             case JA -> Ersattning.BeslutsutfallEnum.JA;
             case NEJ -> Ersattning.BeslutsutfallEnum.NEJ;
             case FU -> Ersattning.BeslutsutfallEnum.FU;
             default -> throw new InternalError("Could not map beslutsutfall: " + beslutsutfall);
         };
-}
+    }
 
    private FSSAinformation mapFssaInformation(
             se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.FSSAinformation fsSAinformation) {
-          return switch (fsSAinformation) {
+        return switch (fsSAinformation) {
             case HANDLAGGNING_PAGAR -> FSSAinformation.HANDLAGGNING_PAGAR;
             case VANTAR_PA_INFO_FRAN_ANNAN_PART -> FSSAinformation.VANTAR_PA_INFO_FRAN_ANNAN_PART;
             case VANTAR_PA_INFO_FRAN_KUND -> FSSAinformation.VANTAR_PA_INFO_FRAN_KUND;
             default -> throw new InternalError("Could not map fssaInformation: " + fsSAinformation);
         };
-}
+    }
 
    private Verksamhetslogik mapVerksamhetslogik(
             se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.Verksamhetslogik verksamhetslogik) {
-            return switch(verksamhetslogik) {
-                  case A -> Verksamhetslogik.A;
-                  case B -> Verksamhetslogik.B;
-                  case C -> Verksamhetslogik.C;
-                  default -> throw new InternalError("Could not map verksamhetslogik: " + verksamhetslogik);
-            };
-      }
+        return switch (verksamhetslogik) {
+            case A -> Verksamhetslogik.A;
+            case B -> Verksamhetslogik.B;
+            case C -> Verksamhetslogik.C;
+            default -> throw new InternalError("Could not map verksamhetslogik: " + verksamhetslogik);
+        };
+    }
 
    private Roll mapRoll(se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.Roll roll) {
-            return switch(roll) {
-                  case AGARE -> Roll.AGARE;
-                  case ANSVARIG_HANDLAGGARE -> Roll.ANSVARIG_HANDLAGGARE;
-                  case DJUR -> Roll.DJUR;
-                  default -> throw new InternalError("Could not map roll: " + roll);
-            };
-}
+        return switch (roll) {
+            case AGARE -> Roll.AGARE;
+            case ANSVARIG_HANDLAGGARE -> Roll.ANSVARIG_HANDLAGGARE;
+            case DJUR -> Roll.DJUR;
+            default -> throw new InternalError("Could not map roll: " + roll);
+        };
+    }
 
-   private UppgiftStatus mapUppgiftStatus(se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.UppgiftStatus uppgiftStatus)
-   {
-       return switch (uppgiftStatus) {
-           case TILLDELAD -> TILLDELAD;
-           case AVSLUTAD -> AVSLUTAD;
-           case PLANERAD -> PLANERAD;
-           default -> throw new InternalError("Could not map UppgiftStatus: " + uppgiftStatus);
-       };
-   }
+   private UppgiftStatus mapUppgiftStatus(se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.UppgiftStatus uppgiftStatus) {
+        return switch (uppgiftStatus) {
+            case TILLDELAD -> TILLDELAD;
+            case AVSLUTAD -> AVSLUTAD;
+            case PLANERAD -> PLANERAD;
+            default -> throw new InternalError("Could not map UppgiftStatus: " + uppgiftStatus);
+        };
+    }
 }

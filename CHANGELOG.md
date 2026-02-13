@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-kundbehovsflode-adapter.
 
+## 0.0.4 (2026-02-13)
+
+### Bug Fixes
+
+-  beslutsutfall null i kundbehovsflöde respons ([b638a](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/b638a4f59bc91ba) Ulf Slunga)  
+
 ## 0.0.3 (2026-02-12)
 
 ### Bug Fixes

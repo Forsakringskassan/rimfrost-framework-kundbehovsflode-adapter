@@ -3,13 +3,14 @@ package se.fk.rimfrost.framework.kundbehovsflode.adapter;
 import jakarta.enterprise.context.ApplicationScoped;
 import se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.*;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.*;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Ersattning.BeslutsutfallEnum;
+import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslutsutfall;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.FSSAinformation;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Roll;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Verksamhetslogik;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus.*;
 
@@ -39,8 +40,7 @@ public class KundbehovsflodeMapper
       return responseBuilder.build();
    }
 
-   public PutKundbehovsflodeRequest toKundbehovsflodeRequest(UpdateKundbehovsflodeRequest request,
-         GetKundbehovsflodeResponse apiResponse)
+   public PutKundbehovsflodeRequest toPutKundbehovsflodeRequest(PutKundbehovsflodeUppgiftRequest request)
    {
       var lagrum = new Lagrum();
       lagrum.setId(request.uppgift().specifikation().regel().lagrum().id());
@@ -82,6 +82,7 @@ public class KundbehovsflodeMapper
 
       var uppgift = new Uppgift();
       uppgift.setId(request.uppgift().id());
+      uppgift.setKundbehovsflodeId(request.kundbehovsflodeId());
       uppgift.setFsSAinformation(mapFssaInformation(request.uppgift().fsSAinformation()));
       uppgift.setSkapadTs(request.uppgift().skapadTs());
       uppgift.setUtfordTs(request.uppgift().utfordTs());
@@ -91,31 +92,30 @@ public class KundbehovsflodeMapper
       uppgift.setUppgiftspecifikation(uppgiftspecifikation);
       uppgift.setUnderlag(underlagList);
 
-      var ersattningar = apiResponse.getKundbehovsflode().getKundbehov().getErsattning();
-
-      for (var ersattning : request.ersattningar())
-      {
-         var ersattningItem = ersattningar.stream().filter(e -> e.getId().equals(ersattning.id())).findFirst().get();
-         ersattningItem.setAvslagsanledning(ersattning.avslagsanledning());
-         ersattningItem.setBeslutsutfall(mapBeslutsutfall(ersattning.beslutsutfall()));
-      }
-
-      var kundbehovflode = apiResponse.getKundbehovsflode();
-      var kundbehov = kundbehovflode.getKundbehov();
-      kundbehov.setErsattning(ersattningar);
-      kundbehovflode.setKundbehov(kundbehov);
-      uppgift.setKundbehovsflode(kundbehovflode);
-
       var putRequest = new PutKundbehovsflodeRequest();
       putRequest.setUppgift(uppgift);
       return putRequest;
    }
 
-   private BeslutsutfallEnum mapBeslutsutfall(Beslutsutfall beslutsutfall) {
+   public List<UpdateErsattning> toPatchKundbehovsflodeRequest(PatchErsattningRequest request)
+   {
+      var updateErsattningList = new ArrayList<UpdateErsattning>();
+      for (var ersattning : request.ersattningar())
+      {
+         var updateErsattning = new UpdateErsattning();
+         updateErsattning.setErsattningId(ersattning.ersattningId());
+         updateErsattning.setBeslutsutfall(mapBeslutsutfall(ersattning.beslutsutfall()));
+         updateErsattning.setAvslagsanledning(ersattning.avslagsanledning());
+         updateErsattningList.add(updateErsattning);
+      }
+      return updateErsattningList;
+   }
+
+   private Beslutsutfall mapBeslutsutfall(se.fk.rimfrost.framework.kundbehovsflode.adapter.dto.Beslutsutfall beslutsutfall) {
         return switch (beslutsutfall) {
-            case JA -> Ersattning.BeslutsutfallEnum.JA;
-            case NEJ -> Ersattning.BeslutsutfallEnum.NEJ;
-            case FU -> Ersattning.BeslutsutfallEnum.FU;
+            case JA -> Beslutsutfall.JA;
+            case NEJ -> Beslutsutfall.NEJ;
+            case FU -> Beslutsutfall.FU;
             default -> throw new InternalError("Could not map beslutsutfall: " + beslutsutfall);
         };
     }

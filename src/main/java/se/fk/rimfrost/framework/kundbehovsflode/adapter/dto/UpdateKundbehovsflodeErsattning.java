@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface UpdateKundbehovsflodeErsattning
 {
 
-   UUID id();
+   UUID ersattningId();
 
    @Nullable
    Beslutsutfall beslutsutfall();

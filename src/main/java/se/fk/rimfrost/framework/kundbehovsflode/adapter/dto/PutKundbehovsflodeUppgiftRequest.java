@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Value.Immutable
-public interface UpdateKundbehovsflodeRequest
+public interface PutKundbehovsflodeUppgiftRequest
 {
    UUID kundbehovsflodeId();
 
    UpdateKundbehovsflodeUppgift uppgift();
-
-   List<UpdateKundbehovsflodeErsattning> ersattningar();
 
    List<UpdateKundbehovsflodeUnderlag> underlag();
 

@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-kundbehovsflode-adapter.
 
+## 0.1.0 (2026-02-18)
+
+### Features
+
+-  Split put in two operations, patch and put ([39a0a](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/39a0a08ef1fbad1) Nils Elveros)  
+
 ## 0.0.4 (2026-02-13)
 
 ### Bug Fixes

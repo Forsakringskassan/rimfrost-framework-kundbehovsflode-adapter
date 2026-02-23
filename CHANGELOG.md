@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-kundbehovsflode-adapter.
 
+## 0.1.1 (2026-02-23)
+
+### Bug Fixes
+
+-  byter till apache connector för att hantera PATCH-operationer ([62d87](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/62d87475d2c2081) Ulf Slunga)  
+
 ## 0.1.0 (2026-02-18)
 
 ### Features

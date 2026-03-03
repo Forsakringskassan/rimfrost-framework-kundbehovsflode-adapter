@@ -1,3 +1,3 @@
-# rimfrost-framework-kundbehovsflode-adapter
+# rimfrost-framework-handlaggning-adapter
 
-Adapter för integration med service Kundbehovsflöde
+Adapter för integration med service Handläggning

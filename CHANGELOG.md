@@ -1,77 +1,83 @@
-# rimfrost-framework-kundbehovsflode-adapter changelog
+# rimfrost-framework-handlaggning-adapter changelog
 
-Changelog of rimfrost-framework-kundbehovsflode-adapter.
+Changelog of rimfrost-framework-handlaggning-adapter.
+
+## 0.1.4 (2026-03-03)
+
+### Bug Fixes
+
+-  Update README.md ([e447a](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/e447a5aa7f3de0f) Lars Persson)  
 
 ## 0.1.3 (2026-03-03)
 
 ### Bug Fixes
 
--  Rename kundbehovsflode to handlaggning ([e90aa](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/e90aa71bc7eb7d2) Lars Persson)  
+-  Rename kundbehovsflode to handlaggning ([e90aa](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/e90aa71bc7eb7d2) Lars Persson)  
 
 ## 0.1.2 (2026-02-24)
 
 ### Bug Fixes
 
--  bump openapi version ([414ea](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/414eade95a157d3) Nils Elveros)  
+-  bump openapi version ([414ea](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/414eade95a157d3) Nils Elveros)  
 
 ## 0.1.1 (2026-02-23)
 
 ### Bug Fixes
 
--  byter till apache connector för att hantera PATCH-operationer ([62d87](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/62d87475d2c2081) Ulf Slunga)  
+-  byter till apache connector för att hantera PATCH-operationer ([62d87](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/62d87475d2c2081) Ulf Slunga)  
 
 ## 0.1.0 (2026-02-18)
 
 ### Features
 
--  Split put in two operations, patch and put ([39a0a](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/39a0a08ef1fbad1) Nils Elveros)  
+-  Split put in two operations, patch and put ([39a0a](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/39a0a08ef1fbad1) Nils Elveros)  
 
 ## 0.0.4 (2026-02-13)
 
 ### Bug Fixes
 
--  beslutsutfall null i kundbehovsflöde respons ([b638a](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/b638a4f59bc91ba) Ulf Slunga)  
+-  beslutsutfall null i kundbehovsflöde respons ([b638a](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/b638a4f59bc91ba) Ulf Slunga)  
 
 ## 0.0.3 (2026-02-12)
 
 ### Bug Fixes
 
--  remove dependency to framework-regel ([0f09a](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/0f09a76fe1d7f9b) Nils Elveros)  
+-  remove dependency to framework-regel ([0f09a](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/0f09a76fe1d7f9b) Nils Elveros)  
 
 ## 0.0.2 (2026-02-11)
 
 ### Bug Fixes
 
--  mer mapper-metoder från framewok-regel-manuell ([dc9dd](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/dc9dd9dd64e9770) Ulf Slunga)  
+-  mer mapper-metoder från framewok-regel-manuell ([dc9dd](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/dc9dd9dd64e9770) Ulf Slunga)  
 
 ## 0.0.1 (2026-02-11)
 
 ### Bug Fixes
 
--  redigerat package name ([c3cbb](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/c3cbb347ab6de7e) Ulf Slunga)  
--  redigerat package name ([af1ac](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/af1ac1f81f5f9f7) Ulf Slunga)  
--  lägger till kundbehovsflöde-adapter ([9f62e](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/9f62eb1ddb8796b) Ulf Slunga)  
+-  redigerat package name ([c3cbb](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/c3cbb347ab6de7e) Ulf Slunga)  
+-  redigerat package name ([af1ac](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/af1ac1f81f5f9f7) Ulf Slunga)  
+-  lägger till kundbehovsflöde-adapter ([9f62e](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/9f62eb1ddb8796b) Ulf Slunga)  
 
 ### Other changes
 
 **Add files via upload**
 
 
-[899e5](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/899e57e638ab395) Ulf Slunga *2026-02-11 09:04:52*
+[899e5](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/899e57e638ab395) Ulf Slunga *2026-02-11 09:04:52*
 
 **Create bundle-maven-lib-ci.yaml**
 
 
-[d7ec1](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/d7ec1b41aca2990) Ulf Slunga *2026-02-11 09:04:38*
+[d7ec1](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/d7ec1b41aca2990) Ulf Slunga *2026-02-11 09:04:38*
 
 **Create CODEOWNERS**
 
 
-[8ed93](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/8ed93d9416c90d3) Ulf Slunga *2026-02-11 09:01:50*
+[8ed93](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/8ed93d9416c90d3) Ulf Slunga *2026-02-11 09:01:50*
 
 **Initial commit**
 
 
-[4f484](https://github.com/Forsakringskassan/rimfrost-framework-kundbehovsflode-adapter/commit/4f48426e76d547e) Ulf Slunga *2026-02-11 08:55:33*
+[4f484](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/4f48426e76d547e) Ulf Slunga *2026-02-11 08:55:33*
 
 

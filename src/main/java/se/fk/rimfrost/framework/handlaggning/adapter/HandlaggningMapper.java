@@ -1,17 +1,14 @@
 package se.fk.rimfrost.framework.handlaggning.adapter;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import se.fk.rimfrost.framework.handlaggning.adapter.dto.Ersattningstatus;
 import se.fk.rimfrost.framework.handlaggning.adapter.dto.HandlaggningResponse;
 import se.fk.rimfrost.framework.handlaggning.adapter.dto.ImmutableErsattning;
 import se.fk.rimfrost.framework.handlaggning.adapter.dto.ImmutableHandlaggningResponse;
 import se.fk.rimfrost.framework.handlaggning.adapter.dto.PatchErsattningRequest;
 import se.fk.rimfrost.framework.handlaggning.adapter.dto.PutHandlaggningUppgiftRequest;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.*;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslutsutfall;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.FSSAinformation;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Roll;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus;
-import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Verksamhetslogik;
+
 import java.util.ArrayList;
 import java.util.List;
 import static se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.UppgiftStatus.*;
@@ -108,17 +105,29 @@ public class HandlaggningMapper
          updateErsattning.setErsattningId(ersattning.ersattningId());
          updateErsattning.setBeslutsutfall(mapBeslutsutfall(ersattning.beslutsutfall()));
          updateErsattning.setAvslagsanledning(ersattning.avslagsanledning());
+         updateErsattning.ersattningsStatus(mapErsattningstatus(ersattning.ersattningstatus()));
          updateErsattningList.add(updateErsattning);
       }
       return updateErsattningList;
    }
+
+   private Ersattningsstatus mapErsattningstatus(se.fk.rimfrost.framework.handlaggning.adapter.dto.Ersattningstatus ersattningstatus) {
+            return switch (ersattningstatus) {
+            case FASTSTALLT -> Ersattningsstatus.FASTSTALLT;
+            case FASTSTALLT_UNDER_UTREDNING -> Ersattningsstatus.FASTSTALLT_UNDER_UTREDNING;
+            case PLANERAT -> Ersattningsstatus.PLANERAT;
+            case UNDER_UTREDNING -> Ersattningsstatus.UNDER_UTREDNING;
+            case YRKAT -> Ersattningsstatus.YRKAT;
+            default -> null;
+        };
+}
 
    private Beslutsutfall mapBeslutsutfall(se.fk.rimfrost.framework.handlaggning.adapter.dto.Beslutsutfall beslutsutfall) {
         return switch (beslutsutfall) {
             case JA -> Beslutsutfall.JA;
             case NEJ -> Beslutsutfall.NEJ;
             case FU -> Beslutsutfall.FU;
-            default -> throw new InternalError("Could not map beslutsutfall: " + beslutsutfall);
+            default -> null;
         };
     }
 

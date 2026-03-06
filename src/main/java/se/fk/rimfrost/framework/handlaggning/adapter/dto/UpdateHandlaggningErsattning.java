@@ -16,4 +16,7 @@ public interface UpdateHandlaggningErsattning
    @Nullable
    String avslagsanledning();
 
+   @Nullable
+   Ersattningstatus ersattningstatus();
+
 }

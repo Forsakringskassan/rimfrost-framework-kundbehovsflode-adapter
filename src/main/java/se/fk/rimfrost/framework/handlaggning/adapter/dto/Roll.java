@@ -1,6 +1,15 @@
 package se.fk.rimfrost.framework.handlaggning.adapter.dto;
 
-public enum Roll
+import org.immutables.value.Value;
+import java.util.UUID;
+
+@Value.Immutable
+public interface Roll
 {
-   AGARE, DJUR, ANSVARIG_HANDLAGGARE;
+   UUID id();
+
+   String version();
+
+   String namn();
+
 }

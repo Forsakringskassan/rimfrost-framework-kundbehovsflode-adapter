@@ -151,14 +151,14 @@ public class HandlaggningMapper
         };
     }
 
-   private Roll mapRoll(se.fk.rimfrost.framework.handlaggning.adapter.dto.Roll roll) {
-        return switch (roll) {
-            case AGARE -> Roll.AGARE;
-            case ANSVARIG_HANDLAGGARE -> Roll.ANSVARIG_HANDLAGGARE;
-            case DJUR -> Roll.DJUR;
-            default -> throw new InternalError("Could not map roll: " + roll);
-        };
-    }
+   private Roll mapRoll(se.fk.rimfrost.framework.handlaggning.adapter.dto.Roll roll)
+   {
+      var mappedRoll = new Roll();
+      mappedRoll.setId(roll.id());
+      mappedRoll.setVersion(roll.version());
+      mappedRoll.setNamn(roll.namn());
+      return mappedRoll;
+   }
 
    private UppgiftStatus mapUppgiftStatus(se.fk.rimfrost.framework.handlaggning.adapter.dto.UppgiftStatus uppgiftStatus) {
         return switch (uppgiftStatus) {

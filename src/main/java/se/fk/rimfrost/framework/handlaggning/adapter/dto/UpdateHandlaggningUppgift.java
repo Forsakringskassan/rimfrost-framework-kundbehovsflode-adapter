@@ -25,7 +25,7 @@ public interface UpdateHandlaggningUppgift
 
    UppgiftStatus uppgiftStatus();
 
-   String aktivitet();
+   UUID aktivitetId();
 
    FSSAinformation fsSAinformation();
 

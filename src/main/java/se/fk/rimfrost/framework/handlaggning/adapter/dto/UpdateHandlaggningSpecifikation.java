@@ -17,7 +17,7 @@ public interface UpdateHandlaggningSpecifikation
 
    Verksamhetslogik verksamhetslogik();
 
-   Roll roll();
+   String roll();
 
    String applikationsId();
 

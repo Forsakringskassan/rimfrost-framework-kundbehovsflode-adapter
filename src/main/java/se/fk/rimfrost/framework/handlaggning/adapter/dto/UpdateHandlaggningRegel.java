@@ -11,10 +11,6 @@ public interface UpdateHandlaggningRegel
 
    String version();
 
-   String namn();
-
-   String beskrivning();
-
-   UpdateHandlaggningLagrum lagrum();
+   UUID lagrumId();
 
 }

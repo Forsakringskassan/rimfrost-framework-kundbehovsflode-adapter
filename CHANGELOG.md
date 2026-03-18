@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.9 (2026-03-18)
+
+### Bug Fixes
+
+-  uppdatera mot modell ([bdfd3](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/bdfd3306d2b1d55) Ulf Slunga)  
+
 ## 0.1.8 (2026-03-11)
 
 ### Bug Fixes

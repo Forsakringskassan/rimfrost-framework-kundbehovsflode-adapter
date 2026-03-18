@@ -9,11 +9,11 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.proxy.WebResourceFactory;
-import se.fk.rimfrost.framework.handlaggning.adapter.dto.HandlaggningRequest;
-import se.fk.rimfrost.framework.handlaggning.adapter.dto.HandlaggningResponse;
-import se.fk.rimfrost.framework.handlaggning.adapter.dto.PatchErsattningRequest;
-import se.fk.rimfrost.framework.handlaggning.adapter.dto.PutHandlaggningUppgiftRequest;
+import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
+import se.fk.rimfrost.framework.handlaggning.model.HandlaggningRead;
+import se.fk.rimfrost.framework.handlaggning.model.Yrkande;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.HandlaggningControllerApi;
+import java.util.UUID;
 import static io.quarkus.arc.impl.UncaughtExceptions.LOGGER;
 
 @SuppressWarnings("unused")
@@ -35,47 +35,39 @@ public class HandlaggningAdapter
       ClientConfig clientConfig = new ClientConfig();
       clientConfig.connectorProvider(new ApacheConnectorProvider());
       Client client = ClientBuilder.newClient(clientConfig);
-
       this.handlaggningClient = WebResourceFactory.newResource(
             HandlaggningControllerApi.class,
             client.target(this.handlaggningBaseUrl));
    }
 
-   public HandlaggningResponse getHandlaggningInfo(HandlaggningRequest handlaggningRequest)
+   public Yrkande createYrkande(Yrkande yrkande)
    {
-      var apiResponse = handlaggningClient.getHandlaggning(handlaggningRequest.handlaggningId());
-      return handlaggningMapper.toHandlaggningResponse(apiResponse);
+      var postYrkandeRequest = handlaggningMapper.toPostYrkandeRequest(yrkande);
+      var postYrkandeResponse = handlaggningClient.postYrkande(postYrkandeRequest);
+      return handlaggningMapper.toYrkande(postYrkandeResponse.getYrkande());
    }
 
-   public void putHandlaggning(PutHandlaggningUppgiftRequest request)
+   public Handlaggning createHandlaggning(UUID yrkandeId, UUID processinstansId, UUID handlaggningspecifikationId)
    {
-      var apiRequest = handlaggningMapper.toPutHandlaggningRequest(request);
-      LOGGER.info("putHandlaggning " + request);
-      try
-      {
-         handlaggningClient.putHandlaggning(request.handlaggningId(), apiRequest);
-      }
-      catch (Throwable t)
-      {
-         t.printStackTrace();
-         throw t;
-      }
-      LOGGER.info("putHandlaggning executed");
+      var postHandlaggningRequest = handlaggningMapper.toPostHandlaggningRequest(yrkandeId, processinstansId,
+            handlaggningspecifikationId);
+      LOGGER.info("createHandlaggning: postHandlaggningRequest " + postHandlaggningRequest);
+      var postHandlaggningResponse = handlaggningClient.postHandlaggning(postHandlaggningRequest);
+      LOGGER.info("createHandlaggning executed");
+      return handlaggningMapper.toHandlaggning(postHandlaggningResponse.getHandlaggning());
    }
 
-   public void patchHandlaggning(PatchErsattningRequest request)
+   public HandlaggningRead readHandlaggning(UUID handlaggningId)
    {
-      var apiRequest = handlaggningMapper.toPatchHandlaggningRequest(request);
-      LOGGER.info("patchHandlaggning " + request);
-      try
-      {
-         handlaggningClient.patchHandlaggning(request.handlaggningId(), apiRequest);
-      }
-      catch (Throwable t)
-      {
-         t.printStackTrace();
-         throw t;
-      }
-      LOGGER.info("patchHandlaggning executed");
+      var getHandlaggningResponse = handlaggningClient.getHandlaggning(handlaggningId);
+      return handlaggningMapper.toHandlaggningRead(getHandlaggningResponse.getHandlaggning());
    }
+
+   public Handlaggning updateHandlaggning(Handlaggning handlaggning)
+   {
+      var putHandlaggningRequest = handlaggningMapper.toPutHandlaggningRequest(handlaggning);
+      var putHandlaggningResponse = handlaggningClient.putHandlaggning(handlaggning.id(), putHandlaggningRequest);
+      return handlaggningMapper.toHandlaggning(putHandlaggningResponse.getHandlaggning());
+   }
+
 }

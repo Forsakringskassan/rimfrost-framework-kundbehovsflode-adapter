@@ -1,4 +1,4 @@
-package se.fk.rimfrost.framework.handlaggning.adapter.dto;
+package se.fk.rimfrost.framework.handlaggning.model;
 
 public enum FSSAinformation
 {

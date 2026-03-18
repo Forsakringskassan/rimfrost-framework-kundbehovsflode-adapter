@@ -1,16 +1,18 @@
-package se.fk.rimfrost.framework.handlaggning.adapter.dto;
+package se.fk.rimfrost.framework.handlaggning.model;
 
 import jakarta.annotation.Nullable;
 import org.immutables.value.Value;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Value.Immutable
-public interface UpdateHandlaggningUppgift
+public interface Uppgift
 {
+
    UUID id();
 
-   String version();
+   int version();
 
    OffsetDateTime skapadTs();
 
@@ -25,9 +27,12 @@ public interface UpdateHandlaggningUppgift
 
    UppgiftStatus uppgiftStatus();
 
-   String aktivitet();
+   UUID aktivitetId();
 
-   FSSAinformation fsSAinformation();
+   FSSAinformation fSSAinformation();
 
-   UpdateHandlaggningSpecifikation specifikation();
+   List<Underlag> underlag();
+
+   UppgiftSpecifikation uppgiftSpecifikation();
+
 }

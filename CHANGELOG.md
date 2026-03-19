@@ -2,6 +2,14 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.10 (2026-03-19)
+
+### Bug Fixes
+
+-  yrkandestatus som enum ([91b63](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/91b6369d82310d2) Ulf Slunga)  
+-  yrkandestatus och avslagsanledning i produceratresultat ([22cde](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/22cde2dad3da9da) Ulf Slunga)  
+-  sätter uppgiftstatus och FSSAinformation i toApiUppgift ([7af60](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/7af60cda75ce7e1) Ulf Slunga)  
+
 ## 0.1.9 (2026-03-18)
 
 ### Bug Fixes

@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.12 (2026-03-19)
+
+### Bug Fixes
+
+-  Mark avslutadTS as nullable ([e9300](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/e930040288d2431) Lars Persson)  
+
 ## 0.1.11 (2026-03-19)
 
 ### Bug Fixes

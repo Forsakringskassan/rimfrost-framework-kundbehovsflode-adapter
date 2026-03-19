@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.11 (2026-03-19)
+
+### Bug Fixes
+
+-  Set yrkandeStatus and avslagsanledning in model ProduceratResultat ([1357b](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/1357b1e0aef54d9) Lars Persson)  
+
 ## 0.1.10 (2026-03-19)
 
 ### Bug Fixes

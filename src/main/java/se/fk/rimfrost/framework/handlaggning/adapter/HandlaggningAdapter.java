@@ -9,8 +9,8 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.proxy.WebResourceFactory;
+import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
-import se.fk.rimfrost.framework.handlaggning.model.HandlaggningRead;
 import se.fk.rimfrost.framework.handlaggning.model.Yrkande;
 import se.fk.rimfrost.jaxrsspec.controllers.generatedsource.HandlaggningControllerApi;
 import java.util.UUID;
@@ -57,17 +57,17 @@ public class HandlaggningAdapter
       return handlaggningMapper.toHandlaggning(postHandlaggningResponse.getHandlaggning());
    }
 
-   public HandlaggningRead readHandlaggning(UUID handlaggningId)
+   public Handlaggning readHandlaggning(UUID handlaggningId)
    {
       var getHandlaggningResponse = handlaggningClient.getHandlaggning(handlaggningId);
-      return handlaggningMapper.toHandlaggningRead(getHandlaggningResponse.getHandlaggning());
+      return handlaggningMapper.toHandlaggning(getHandlaggningResponse.getHandlaggning());
    }
 
-   public Handlaggning updateHandlaggning(Handlaggning handlaggning)
+   public HandlaggningUpdate updateHandlaggning(HandlaggningUpdate handlaggningUpdate)
    {
-      var putHandlaggningRequest = handlaggningMapper.toPutHandlaggningRequest(handlaggning);
-      var putHandlaggningResponse = handlaggningClient.putHandlaggning(handlaggning.id(), putHandlaggningRequest);
-      return handlaggningMapper.toHandlaggning(putHandlaggningResponse.getHandlaggning());
+      var putHandlaggningRequest = handlaggningMapper.toPutHandlaggningRequest(handlaggningUpdate);
+      var putHandlaggningResponse = handlaggningClient.putHandlaggning(handlaggningUpdate.id(), putHandlaggningRequest);
+      return handlaggningMapper.toHandlaggningUpdate(putHandlaggningResponse.getHandlaggning());
    }
 
 }

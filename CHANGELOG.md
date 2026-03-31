@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.14 (2026-03-31)
+
+### Bug Fixes
+
+-  Add support for setting beslut on Yrkande ([03f90](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/03f90336d67f9ba) Lars Persson)  
+
 ## 0.1.13 (2026-03-25)
 
 ### Bug Fixes

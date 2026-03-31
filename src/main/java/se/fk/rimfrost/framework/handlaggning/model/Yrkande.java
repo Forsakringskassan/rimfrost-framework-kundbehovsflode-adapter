@@ -1,5 +1,6 @@
 package se.fk.rimfrost.framework.handlaggning.model;
 
+import jakarta.annotation.Nullable;
 import org.immutables.value.Value;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -28,6 +29,9 @@ public interface Yrkande
    List<IndividYrkandeRoll> individYrkandeRoller();
 
    List<ProduceratResultat> produceradeResultat();
+
+   @Nullable
+   Beslut beslut();
 
    @Value.Immutable
    public interface IndividYrkandeRoll

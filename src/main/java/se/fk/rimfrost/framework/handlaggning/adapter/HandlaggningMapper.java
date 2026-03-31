@@ -2,6 +2,8 @@ package se.fk.rimfrost.framework.handlaggning.adapter;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import se.fk.rimfrost.framework.handlaggning.model.*;
+import se.fk.rimfrost.framework.handlaggning.model.Beslut;
+import se.fk.rimfrost.framework.handlaggning.model.Beslutsrad;
 import se.fk.rimfrost.framework.handlaggning.model.FSSAinformation;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
@@ -73,6 +75,30 @@ public class HandlaggningMapper
             .toList();
    }
 
+   private se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslutsrad toApiBeslutsrad(Beslutsrad beslutsrad)
+   {
+      var apiBeslutsrad = new se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslutsrad();
+      apiBeslutsrad.setId(beslutsrad.id());
+      apiBeslutsrad.setVersion(beslutsrad.version());
+      apiBeslutsrad.setBeslutsTyp(beslutsrad.beslutsTyp());
+      apiBeslutsrad.setBeslutsUtfall(beslutsrad.beslutsUtfall());
+      apiBeslutsrad.setAvslutsTyp(beslutsrad.avslutsTyp());
+
+      return apiBeslutsrad;
+   }
+
+   private se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslut toApiBeslut(Beslut beslut)
+   {
+      var apiBeslut = new se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslut();
+      apiBeslut.setId(beslut.id());
+      apiBeslut.setVersion(beslut.version());
+      apiBeslut.setBeslutsfattare(beslut.beslutsfattare());
+      apiBeslut.setDatum(beslut.datum());
+      apiBeslut.setBeslutsrader(beslut.beslutsrader().stream().map(this::toApiBeslutsrad).toList());
+
+      return apiBeslut;
+   }
+
    private se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Yrkande toApiYrkande(Yrkande yrkande)
    {
       var apiYrkande = new se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Yrkande();
@@ -86,6 +112,13 @@ public class HandlaggningMapper
       apiYrkande.setAvsikt(Avsiktstyp.valueOf(yrkande.avsikt()));
       apiYrkande.setIndividYrkandeRoller(toApiIndividYrkandeRoller(yrkande.individYrkandeRoller()));
       apiYrkande.setProduceradeResultat(toApiProduceradeResultat(yrkande.produceradeResultat()));
+
+      var beslut = yrkande.beslut();
+      if (beslut != null)
+      {
+         apiYrkande.setBeslut(toApiBeslut(beslut));
+      }
+
       return apiYrkande;
    }
 

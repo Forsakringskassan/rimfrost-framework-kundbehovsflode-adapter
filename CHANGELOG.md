@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.15 (2026-04-01)
+
+### Bug Fixes
+
+-  tar bort underlag från Uppgift ([042cd](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/042cd79f1747fdc) Ulf Slunga)  
+
 ## 0.1.14 (2026-03-31)
 
 ### Bug Fixes

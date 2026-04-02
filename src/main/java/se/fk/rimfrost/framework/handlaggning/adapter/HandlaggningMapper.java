@@ -8,6 +8,7 @@ import se.fk.rimfrost.framework.handlaggning.model.FSSAinformation;
 import se.fk.rimfrost.framework.handlaggning.model.Handlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.HandlaggningUpdate;
 import se.fk.rimfrost.framework.handlaggning.model.ProduceratResultat;
+import se.fk.rimfrost.framework.handlaggning.model.ProduceratResultatRef;
 import se.fk.rimfrost.framework.handlaggning.model.Underlag;
 import se.fk.rimfrost.framework.handlaggning.model.Uppgift;
 import se.fk.rimfrost.framework.handlaggning.model.UppgiftSpecifikation;
@@ -75,6 +76,19 @@ public class HandlaggningMapper
             .toList();
    }
 
+   private List<se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.ProduceratResultatRef> toApiProduceradeResultatRef(
+         List<ProduceratResultatRef> produceradeResultatRef)
+   {
+      return produceradeResultatRef.stream()
+            .map(a -> {
+               var b = new se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.ProduceratResultatRef();
+               b.setId(a.id());
+               b.setVersion(a.version());
+               return b;
+            })
+            .toList();
+   }
+
    private se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslutsrad toApiBeslutsrad(Beslutsrad beslutsrad)
    {
       var apiBeslutsrad = new se.fk.rimfrost.jaxrsspec.controllers.generatedsource.model.Beslutsrad();
@@ -83,7 +97,7 @@ public class HandlaggningMapper
       apiBeslutsrad.setBeslutsTyp(beslutsrad.beslutsTyp());
       apiBeslutsrad.setBeslutsUtfall(beslutsrad.beslutsUtfall());
       apiBeslutsrad.setAvslutsTyp(beslutsrad.avslutsTyp());
-
+      apiBeslutsrad.setProduceradeResultatRef(toApiProduceradeResultatRef(beslutsrad.produceradeResultatRef()));
       return apiBeslutsrad;
    }
 
@@ -183,7 +197,6 @@ public class HandlaggningMapper
    {
       var postHandlaggningRequest = new PostHandlaggningRequest();
       postHandlaggningRequest.setYrkandeId(yrkandeId);
-      postHandlaggningRequest.setProcessInstansId(processInstansId);
       postHandlaggningRequest.setHandlaggningspecifikationId(handlaggningspecifikationId);
       return postHandlaggningRequest;
    }

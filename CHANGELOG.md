@@ -2,6 +2,12 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 0.1.17 (2026-04-02)
+
+### Bug Fixes
+
+-  Allow null for processInstansId ([edb7d](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/edb7d5a48927435) Lars Persson)  
+
 ## 0.1.16 (2026-04-02)
 
 ### Bug Fixes

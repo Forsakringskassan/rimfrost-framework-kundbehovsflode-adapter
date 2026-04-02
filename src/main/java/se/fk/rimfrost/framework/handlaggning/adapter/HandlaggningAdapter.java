@@ -49,7 +49,7 @@ public class HandlaggningAdapter
 
    public Handlaggning createHandlaggning(UUID yrkandeId, UUID processinstansId, UUID handlaggningspecifikationId)
    {
-      var postHandlaggningRequest = handlaggningMapper.toPostHandlaggningRequest(yrkandeId, processinstansId,
+      var postHandlaggningRequest = handlaggningMapper.toPostHandlaggningRequest(yrkandeId,
             handlaggningspecifikationId);
       LOGGER.info("createHandlaggning: postHandlaggningRequest " + postHandlaggningRequest);
       var postHandlaggningResponse = handlaggningClient.postHandlaggning(postHandlaggningRequest);

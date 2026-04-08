@@ -11,11 +11,11 @@ public interface Beslutsrad
 
    int version();
 
-   UUID beslutsTyp();
+   String beslutsTyp();
 
-   UUID beslutsUtfall();
+   String beslutsUtfall();
 
-   UUID avslutsTyp();
+   String avslutsTyp();
 
    List<ProduceratResultatRef> produceradeResultatRef();
 

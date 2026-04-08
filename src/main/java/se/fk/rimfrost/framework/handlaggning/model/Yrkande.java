@@ -14,11 +14,11 @@ public interface Yrkande
 
    int version();
 
-   UUID erbjudandeId();
+   String erbjudandeId();
 
    OffsetDateTime yrkandeDatum();
 
-   Yrkandestatus yrkandeStatus();
+   String yrkandeStatus();
 
    OffsetDateTime yrkandeFrom();
 
@@ -36,9 +36,9 @@ public interface Yrkande
    @Value.Immutable
    public interface IndividYrkandeRoll
    {
-      UUID individId();
+      Idtyp individ();
 
-      UUID yrkandeRollId();
+      String yrkandeRollId();
    }
 
 }

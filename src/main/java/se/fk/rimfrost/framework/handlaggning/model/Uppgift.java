@@ -22,13 +22,13 @@ public interface Uppgift
    OffsetDateTime planeradTs();
 
    @Nullable
-   UUID utforarId();
+   Idtyp utforarId();
 
-   UppgiftStatus uppgiftStatus();
+   String uppgiftStatus();
 
    UUID aktivitetId();
 
-   FSSAinformation fSSAinformation();
+   String fSSAinformation();
 
    UppgiftSpecifikation uppgiftSpecifikation();
 

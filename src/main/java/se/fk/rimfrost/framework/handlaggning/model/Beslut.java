@@ -15,7 +15,7 @@ public interface Beslut
 
    OffsetDateTime datum();
 
-   UUID beslutsfattare();
+   Idtyp beslutsfattare();
 
    List<Beslutsrad> beslutsrader();
 }

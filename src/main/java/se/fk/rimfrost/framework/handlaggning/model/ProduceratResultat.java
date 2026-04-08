@@ -16,7 +16,7 @@ public interface ProduceratResultat
 
    OffsetDateTime resultatTom();
 
-   Yrkandestatus yrkandeStatus();
+   String yrkandeStatus();
 
    @Nullable
    String avslagsanledning();

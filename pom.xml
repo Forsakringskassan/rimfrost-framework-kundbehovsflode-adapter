@@ -53,6 +53,11 @@
       <artifactId>jersey-apache-connector</artifactId>
       <version>3.1.11</version>
     </dependency>
+    <dependency>
+      <groupId>se.fk.rimfrost.framework.oul</groupId>
+      <artifactId>rimfrost-framework-oul</artifactId>
+      <version>0.1.6</version>
+    </dependency>
   </dependencies>
 
   <repositories>

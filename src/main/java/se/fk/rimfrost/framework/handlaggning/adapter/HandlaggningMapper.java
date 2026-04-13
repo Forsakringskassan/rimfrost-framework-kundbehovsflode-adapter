@@ -366,4 +366,13 @@ public class HandlaggningMapper
             .build();
    }
 
+   @SuppressWarnings("unused")
+   public Idtyp toHandlaggningModelIdtyp(se.fk.rimfrost.framework.oul.logic.dto.Idtyp idtyp)
+   {
+      return ImmutableIdtyp.builder()
+            .typId(idtyp.typId())
+            .varde(idtyp.varde())
+            .build();
+   }
+
 }

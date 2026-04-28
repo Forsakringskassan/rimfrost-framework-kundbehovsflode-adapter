@@ -2,6 +2,20 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 1.0.0 (2026-04-28)
+
+### Breaking changes
+
+-  release 1.0 ([924fe](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/924fe0aef4daada) Ulf Slunga)  
+
+### Features
+
+-  release 1.0 ([924fe](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/924fe0aef4daada) Ulf Slunga)  
+
+### Bug Fixes
+
+-  releasad version av handlaggning openapi ([dfcc7](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/dfcc7bf52d285b6) Ulf Slunga)  
+
 ## 0.1.18 (2026-04-08)
 
 ### Bug Fixes

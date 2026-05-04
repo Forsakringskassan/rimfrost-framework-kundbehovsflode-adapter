@@ -2,6 +2,14 @@
 
 Changelog of rimfrost-framework-handlaggning-adapter.
 
+## 1.0.1 (2026-05-04)
+
+### Bug Fixes
+
+-  throw exception if response is null ([1f940](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/1f940e904d9856f) Nils Elveros)  
+-  spotless ([6bd53](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/6bd53e105b700a4) Nils Elveros)  
+-  throw handlaggningException when fault occurs ([657d2](https://github.com/Forsakringskassan/rimfrost-framework-handlaggning-adapter/commit/657d2d26a2687e4) Nils Elveros)  
+
 ## 1.0.0 (2026-04-28)
 
 ### Breaking changes

@@ -51,6 +51,12 @@ public class HandlaggningAdapter
       {
          var postYrkandeRequest = handlaggningMapper.toPostYrkandeRequest(yrkande);
          var postYrkandeResponse = handlaggningClient.postYrkande(postYrkandeRequest);
+         if (postYrkandeResponse == null)
+         {
+            throw new HandlaggningException(HandlaggningException.ErrorType.UNEXPECTED_ERROR,
+                  "Oväntat fel vid skapande av yrkande, response är null");
+         }
+
          return handlaggningMapper.toYrkande(postYrkandeResponse.getYrkande());
       }
       catch (BadRequestException e)
@@ -77,6 +83,11 @@ public class HandlaggningAdapter
       {
          var postHandlaggningRequest = handlaggningMapper.toPostHandlaggningRequest(yrkandeId, handlaggningspecifikationId);
          var postHandlaggningResponse = handlaggningClient.postHandlaggning(postHandlaggningRequest);
+         if (postHandlaggningResponse == null)
+         {
+            throw new HandlaggningException(HandlaggningException.ErrorType.UNEXPECTED_ERROR,
+                  "Oväntat fel vid skapande av handläggning, response är null för yrkandeId: " + yrkandeId);
+         }
          return handlaggningMapper.toHandlaggning(postHandlaggningResponse.getHandlaggning());
       }
       catch (BadRequestException e)
@@ -102,6 +113,11 @@ public class HandlaggningAdapter
       try
       {
          var getHandlaggningResponse = handlaggningClient.getHandlaggning(handlaggningId);
+         if (getHandlaggningResponse == null)
+         {
+            throw new HandlaggningException(HandlaggningException.ErrorType.UNEXPECTED_ERROR,
+                  "Oväntat fel vid hämtande av handläggning, response är null för handläggningId: " + handlaggningId);
+         }
          return handlaggningMapper.toHandlaggning(getHandlaggningResponse.getHandlaggning());
       }
       catch (NotFoundException e)
@@ -133,6 +149,11 @@ public class HandlaggningAdapter
       {
          var putHandlaggningRequest = handlaggningMapper.toPutHandlaggningRequest(handlaggningUpdate);
          var putHandlaggningResponse = handlaggningClient.putHandlaggning(handlaggningUpdate.id(), putHandlaggningRequest);
+         if (putHandlaggningResponse == null)
+         {
+            throw new HandlaggningException(HandlaggningException.ErrorType.UNEXPECTED_ERROR,
+                  "Oväntat fel vid uppdatering av handläggning, response är null för handläggningId: " + handlaggningUpdate.id());
+         }
          return handlaggningMapper.toHandlaggningUpdate(putHandlaggningResponse.getHandlaggning());
       }
       catch (NotFoundException e)

@@ -108,6 +108,11 @@
       <version>3.13.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>se.fk.rimfrost.framework.oul</groupId>
+      <artifactId>rimfrost-framework-oul</artifactId>
+      <version>0.1.6</version>
+    </dependency>
   </dependencies>
 
   <repositories>
